@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+
+	<script type="text/javascript" src="//use.typekit.net/pcs7nul.js"></script>
+	<script type="text/javascript">
+		try {
+			Typekit.load();
+		} catch (e) {
+		}
+	</script>
+
+    <link rel="stylesheet" type='text/css' href="#{request.contextPath}/css/main.css" />
+    <link rel="stylesheet" type='text/css' href="#{request.contextPath}/css/animate.css" />
+    <link rel="stylesheet" type='text/css' href="#{request.contextPath}/css/animate.delay.css" />
+
+</h:head>
+<h:body>
+	<div class="wrapper wrapper--full">
+
+		<!-- The sidebar -->
+		<div class="sidebar">
+			<ul class="sidebar__items">
+				<li class="sidebar__item sidebar__item--header">
+					<span>Navigation</span>
+				</li>
+
+				<!-- dashboard -->
+				<li class="sidebar__item">
+					<a href="#{request.contextPath}/index.xhtml">
+						<span class="glyphicons--imac">Dashboard</span>
+					</a>
+				</li>
+
+				<!-- Posts -->
+				<li class="sidebar__item sidebar__item--dropdown">
+					<a href="#">
+						<span class="glyphicons--sort">
+							Post
+							<span class="dropdown__indicator glyphicons--chevron-right"></span>
+						</span>
+					</a>
+
+					<ul class="sidebar__dropdown">
+						<li>
+							<a href="#{request.contextPath}/post/new.xhtml">
+								<span class="glyphicons--chevron-right">Create new</span>
+							</a>
+						</li>
+
+						<li>
+							<a href="#{request.contextPath}/post/edit.xhtml">
+								<span class="glyphicons--chevron-right">Edit existing</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+
+				<!-- Category -->
+				<li class="sidebar__item sidebar__item--dropdown">
+					<a href="#">
+						<span class="glyphicons--tag">
+							Category
+							<span class="dropdown__indicator glyphicons--chevron-right"></span>
+						</span>
+					</a>
+
+					<ul class="sidebar__dropdown">
+						<li>
+							<a href="#{request.contextPath}/category/new.xhtml">
+								<span class="glyphicons--chevron-right">Create new</span>
+							</a>
+						</li>
+
+						<li>
+							<a href="#{request.contextPath}/category/edit.xhtml">
+								<span class="glyphicons--chevron-right">Edit existing</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+
+				<!-- User -->
+				<li class="sidebar__item sidebar__item--dropdown selected">
+					<a href="#">
+						<span class="glyphicons--user">
+							User
+							<span class="dropdown__indicator glyphicons--chevron-right"></span>
+						</span>
+					</a>
+
+					<ul class="sidebar__dropdown">
+						<li>
+							<a href="#{request.contextPath}/user/new.xhtml">
+								<span class="glyphicons--chevron-right">Create new</span>
+							</a>
+						</li>
+
+						<li class="active">
+							<a href="#{request.contextPath}/user/edit.xhtml">
+								<span class="glyphicons--chevron-right">Edit existing</span>
+							</a>
+						</li>
+					</ul>
+				</li>
+
+				<!-- login -->
+				<li class="sidebar__item">
+					<a href="#{request.contextPath}/login.xhtml">
+						<span class="glyphicons--keys">Login</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<!-- The content -->
+		<div class="content">
+			<div class="header">
+				<div class="header__items">
+					<div class="header__item header__item--user">
+						<img src="#{gravatar.theGravatar()}" alt="" class="header__avatar" />
+						<span class="header__username">#{mainBean.username}</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="content__wrapper animate1 fadeIn">
+	            <div class="widget">
+	            	<div class="widget__head">
+	            		Create new user
+	            	</div>
+
+	            	<div class="widget__body">
+						<h:form>
+	            			<h:messages />
+
+							<f:event listener="#{editUserBean.validate}" type="postValidate" />
+
+		            		<div class="row row--form">
+		            			<div class="desktop-2-12 mobile-12-12">
+		            				<label for="name" class="text--right mobile-text--left">Name</label>
+		            			</div>
+
+		            			<div class="desktop-4-12 mobile-12-12">
+		            				<h:inputText id="name" value="#{editUserBean.name}" />
+		            			</div>
+		            		</div>
+
+		            		<div class="row row--form">
+		            			<div class="desktop-2-12 mobile-12-12">
+		            				<label for="username" class="text--right mobile-text--left">Username</label>
+		            			</div>
+
+		            			<div class="desktop-4-12 mobile-12-12">
+		            				<h:inputText id="username" value="#{editUserBean.username}" />
+		            			</div>
+		            		</div>
+
+		            		<div class="row row--form">
+		            			<div class="desktop-2-12 mobile-12-12">
+		            				<label for="email" class="text--right mobile-text--left">Email</label>
+		            			</div>
+
+		            			<div class="desktop-4-12 mobile-12-12">
+		            				<h:inputText id="email" value="#{editUserBean.email}" />
+		            			</div>
+		            		</div>
+
+		            		<div class="row row--form">
+		            			<div class="desktop-2-12 mobile-12-12">
+		            				<label for="password" class="text--right mobile-text--left">Password</label>
+		            			</div>
+
+		            			<div class="desktop-4-12 mobile-12-12">
+		            				<h:inputSecret id="password" value="#{editUserBean.password}" />
+		            			</div>
+		            		</div>
+
+		            		<div class="row row--form">
+		            			<div class="desktop-2-12 mobile-12-12">
+		            				<label for="role" class="text--right mobile-text--left">Role</label>
+		            			</div>
+
+		            			<div class="desktop-4-12 mobile-12-12">
+		            				<h:selectOneMenu id="role" value="#{editUserBean.role_id}">
+										 <f:selectItems value="#{roleBean.getAllRoles()}" var="role" itemLabel="#{role.name}" itemValue="#{role.id}" />
+							   		</h:selectOneMenu>
+		            			</div>
+		            		</div>
+
+							<div class="row row--form">
+		            			<div class="desktop-4-12 mobile-12-12 off-desktop-2-12 off-mobile-0-12">
+		            				<h:commandButton class="btn btn--darkblue" value="Submit" action="#{userBean.edit}" />
+		            			</div>
+		            		</div>
+	            		</h:form>
+	            	</div>
+	            </div>
+			</div>
+		</div>
+	</div>
+
+	<script src="#{request.contextPath}/js/modernizr.js"></script>
+	<script src="#{request.contextPath}/js/jquery.js"></script>
+	<script src="#{request.contextPath}/js/jquery.uniform.js"></script>
+	<script src="#{request.contextPath}/js/jquery.selecter.js"></script>
+	<script src="#{request.contextPath}/js/markdown.js"></script>
+	<script src="#{request.contextPath}/js/app.js"></script>
+</h:body>
+</html>

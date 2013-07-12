@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<servlet>
+		<servlet-name>FacesServlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>FacesServlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.xhtml</welcome-file>
+	</welcome-file-list>
+
+	<context-param>
+		<param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<filter>
+		<filter-name>LoginFilter</filter-name>
+		<filter-class>filter.LoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>LoginFilter</filter-name>
+		<url-pattern>/login.xhtml</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>LogoutFilter</filter-name>
+		<filter-class>filter.LogoutFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>LogoutFilter</filter-name>
+		<url-pattern>/logout.xhtml</url-pattern>
+	</filter-mapping>
+	
+	<!-- Only Admin -->
+	<filter>
+		<filter-name>AdminFilter</filter-name>
+		<filter-class>filter.AdminFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AdminFilter</filter-name>
+		<url-pattern>/user/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- Mod -->
+	<filter>
+		<filter-name>EditFilter</filter-name>
+		<filter-class>filter.ModFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>EditFilter</filter-name>
+		<url-pattern>/category/edit.xhtml</url-pattern>
+		<url-pattern>/category/edit.get.xhtml</url-pattern>
+		<url-pattern>/post/edit.xhtml</url-pattern>
+		<url-pattern>/post/edit.get.xhtml</url-pattern>
+	</filter-mapping>
+	
+	<!-- Author -->
+	<filter>
+		<filter-name>NewFilter</filter-name>
+		<filter-class>filter.AuthorFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>NewFilter</filter-name>
+		<url-pattern>/category/new.xhtml</url-pattern>
+		<url-pattern>/post/new.xhtml</url-pattern>
+	</filter-mapping>
+</web-app>
